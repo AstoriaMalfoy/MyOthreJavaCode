@@ -1,12 +1,8 @@
 package io;
 
-import org.apache.poi.util.StringUtil;
-import org.apache.poi.util.SystemOutLogger;
-
 import java.io.*;
 import java.net.Socket;
 import java.util.Date;
-import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -18,10 +14,10 @@ import java.util.concurrent.TimeUnit;
  * @Description TODO
  * @CreateDate 2022/7/22-2:57 PM
  **/
-public class SokcerDemo {
+public class SokcerClientDemo {
 
     private static String HOST = "127.0.0.1";
-    private static Integer PORT = 6789;
+    private static Integer PORT = 9876;
 
     public static void main(String[] args) {
         Socket socket = null;
@@ -39,41 +35,34 @@ public class SokcerDemo {
             BufferedReader userReader = new BufferedReader(new InputStreamReader(System.in));
 
             ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
-
-            scheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        writer.write("beat test" + "-" + uuid);
-                        writer.flush();
-                        System.out.println("--> [se] send success " + new Date().toString());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            },0,2, TimeUnit.SECONDS);
+            ScheduledExecutorService scheduledExecutorService2 = Executors.newSingleThreadScheduledExecutor();
 
             scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        String message = reader.readLine();
-                        System.out.println("<-- [re] receive message {" + message + "}" );
+                        String message;
+                        writer.write("beat test" + "-" + uuid + '\n');
+                        writer.flush();
+                        System.out.println("--> [se] send success " + new Date().toString());
+                        while((message = reader.readLine())!=null){
+                            System.out.println("<-- [re] receive message {" + message + "}" );
+                            break;
+                        }
                     } catch (IOException e) {
-                        e.printStackTrace();
                     }
                 }
-            },0,2,TimeUnit.SECONDS);
+            },0,2, TimeUnit.SECONDS);
 
+
+            while (true){
+
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
-            try {
-                socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            System.out.println("the main thread stop");
         }
     }
 }

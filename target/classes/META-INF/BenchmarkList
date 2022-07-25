@@ -1,3 +1,3 @@
 JMH S 22 jmh.StringComBenchMark S 67 jmh.generated.StringComBenchMark_testStringBuilderBenchmark_jmhTest S 26 testStringBuilderBenchmark S 11 AverageTime I 1 2 A 1 1 1 E E E E E E E I 1 2 E E E E E E U 11 NANOSECONDS E E 
-JMH S 22 jmh.StringComBenchMark S 60 jmh.generated.StringComBenchMark_testStringBenchmark_jmhTest S 19 testStringBenchmark S 11 AverageTime I 1 2 A 1 1 1 E E E E E E E I 1 2 E E E E E E U 11 NANOSECONDS E E 
 JMH S 15 jmh.MyBenchMark S 44 jmh.generated.MyBenchMark_testMethod_jmhTest S 10 testMethod S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 22 jmh.StringComBenchMark S 60 jmh.generated.StringComBenchMark_testStringBenchmark_jmhTest S 19 testStringBenchmark S 11 AverageTime I 1 2 A 1 1 1 E E E E E E E I 1 2 E E E E E E U 11 NANOSECONDS E E 
